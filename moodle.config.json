@@ -87,7 +87,12 @@
         "high": 120
     },
     "customurlscheme": "moodlemobile",
-    "sites": [],
+    "sites": [{
+        "name": "short_name",
+        "alias": "full_name",
+        "url": "https://moodle.albedous.com",
+        "staging": false
+    }],
     "multisitesdisplay": "",
     "sitefindersettings": {},
     "onlyallowlistedsites": false,
