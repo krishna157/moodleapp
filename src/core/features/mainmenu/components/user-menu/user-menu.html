@@ -17,7 +17,7 @@
         <ion-list>
             <!-- Site info with URL and clickable. -->
             <ion-item button class="core-usermenu-siteinfo ion-text-wrap" *ngIf="siteInfo && displaySiteUrl" lines="full" [detail]="false"
-                [href]="siteUrl" core-link>
+                href="https://med-train.com/" core-link>
                 <ion-label>
                     <!-- Show site logo. -->
                     <img class="core-usermenu-site-logo" *ngIf="siteLogo && siteLogoLoaded" [src]="siteLogo" role="presentation" alt=""
@@ -25,7 +25,7 @@
                     <p class="core-usermenu-sitename">
                         <core-format-text [text]="siteName" contextLevel="system" [contextInstanceId]="0" [wsNotFiltered]="true" />
                     </p>
-                    <a [href]="siteUrl" core-link class="core-usermenu-siteurl">{{ siteUrl }}</a>
+                    <a href="https://med-train.com/" core-link class="core-usermenu-siteurl">www.med-train.com</a>
                 </ion-label>
             </ion-item>
             <!-- Site info without URL and not clickable. -->
@@ -95,6 +95,15 @@
                 <ion-icon name="fas-envelope" slot="start" aria-hidden="true" />
                 <ion-label>
                     <p class="item-heading">{{ 'core.user.support' | translate }}</p>
+                </ion-label>
+            </ion-item>
+
+            <ion-item  button href="https://wa.me/917975764489" core-link
+                 [detail]="true" detailIcon="open-outline"
+                class="core-user-menu-support">
+                <ion-icon name="logo-whatsapp" slot="start" aria-hidden="true" />
+                <ion-label>
+                    <p class="item-heading">Whatsapp</p>
                 </ion-label>
             </ion-item>
         </ion-list>

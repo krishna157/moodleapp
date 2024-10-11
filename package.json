@@ -109,6 +109,7 @@
         "cordova-plugin-media-capture": "^5.0.0",
         "cordova-plugin-network-information": "^3.0.0",
         "cordova-plugin-prevent-override": "^1.0.1",
+        "cordova-plugin-privacyscreen": "^0.4.0",
         "cordova-plugin-screen-orientation": "^3.0.4",
         "cordova-plugin-wkuserscript": "^1.0.1",
         "cordova-plugin-wkwebview-cookies": "^1.0.1",
@@ -238,7 +239,8 @@
             "cordova-plugin-wkuserscript": {},
             "cordova-plugin-wkwebview-cookies": {},
             "cordova-sqlite-storage": {},
-            "nl.kingsquare.cordova.background-audio": {}
+            "nl.kingsquare.cordova.background-audio": {},
+            "cordova-plugin-privacyscreen": {}
         }
     }
 }

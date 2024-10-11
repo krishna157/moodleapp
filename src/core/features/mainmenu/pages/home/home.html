@@ -18,3 +18,17 @@
     <core-empty-box *ngIf="tabs.length === 0" icon="fas-house" [message]="'core.courses.nocourses' | translate" />
 </core-loading>
 <core-tabs-outlet *ngIf="tabs.length > 0" [hideUntil]="loaded" [tabs]="tabs" (ionChange)="tabSelected()" />
+<!--<ion-content>
+        <ion-refresher slot="fixed" [disabled]="!loaded" (ionRefresh)="refresh($event.target)">
+            <ion-refresher-content pullingText="{{ 'core.pulltorefresh' | translate }}" />
+        </ion-refresher>
+        <core-loading [hideUntil]="loaded">
+            <ion-list id="course-item">
+                <core-block *ngIf="loadedBlock?.visible" [block]="loadedBlock" contextLevel="user" [instanceId]="userId"
+                    labelledBy="core-courses-my-title" />
+            </ion-list>
+
+            <core-block-side-blocks-button slot="fixed" *ngIf="hasSideBlocks" contextLevel="user" [instanceId]="userId"
+                [myDashboardPage]="myPageCourses" />
+        </core-loading>
+    </ion-content>-->

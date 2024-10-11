@@ -90,7 +90,7 @@
     "sites": [{
         "name": "short_name",
         "alias": "full_name",
-        "url": "https://moodle.albedous.com",
+        "url": "http://13.210.176.131/moodle",
         "staging": false
     }],
     "multisitesdisplay": "",

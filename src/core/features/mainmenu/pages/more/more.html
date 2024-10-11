@@ -3,17 +3,15 @@
         <ion-buttons slot="start">
             <ion-back-button [text]="'core.back' | translate" />
         </ion-buttons>
-
-        <ion-title>
-            <h1>{{ 'core.more' | translate }}</h1>
-        </ion-title>
-
-        <ion-buttons slot="end">
+        <ion-buttons slot="start">
             <core-user-menu-button />
         </ion-buttons>
+        <ion-title>
+            <h1>{{ 'Accounts' | translate }}</h1>
+        </ion-title>
     </ion-toolbar>
 </ion-header>
-<ion-content>
+<!-- <ion-content>
     <ion-list>
         <ion-item class="ion-text-center" *ngIf="(!handlers || !handlers.length) && !handlersLoaded">
             <ion-label>
@@ -58,7 +56,7 @@
             </ion-label>
         </ion-item>
     </ion-list>
-</ion-content>
+</ion-content> -->
 <ion-footer>
     <ion-item button (click)="openSettings()" [attr.aria-label]="'core.settings.appsettings' | translate" [detail]="true">
         <ion-icon name="fas-gears" slot="start" aria-hidden="true" />

@@ -22,6 +22,8 @@ import { CoreMainMenuHomeHandlerService } from '@features/mainmenu/services/hand
 import { CoreMainMenuComponentsModule } from '@features/mainmenu/components/components.module';
 import { resolveHomeRoutes } from '@features/mainmenu/mainmenu-home-routing.module';
 import { CoreMainMenuHomePage } from '@features/mainmenu/pages/home/home';
+import { CoreBlockComponentsModule } from '../block/components/components.module';
+import { CoreCoursesComponentsModule } from '../courses/components/components.module';
 
 /**
  * Build module routes.
@@ -47,9 +49,11 @@ function buildRoutes(injector: Injector): Routes {
 
 @NgModule({
     imports: [
-        CoreSharedModule,
-        CoreMainMenuComponentsModule,
-    ],
+    CoreSharedModule,
+    CoreMainMenuComponentsModule,
+    CoreBlockComponentsModule,
+    CoreCoursesComponentsModule,
+],
     providers: [
         { provide: ROUTES, multi: true, useFactory: buildRoutes, deps: [Injector] },
     ],
