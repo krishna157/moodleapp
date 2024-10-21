@@ -35,7 +35,7 @@ import { CoreDomUtils } from '@services/utils/dom';
 import { CoreUtils } from '@services/utils/utils';
 import { ModalController, Translate } from '@singletons';
 import { Subscription } from 'rxjs';
-
+import { HttpClient } from '@angular/common/http';
 /**
  * Component to display a user menu.
  */
@@ -49,6 +49,8 @@ import { Subscription } from 'rxjs';
     ],
 })
 export class CoreMainMenuUserMenuComponent implements OnInit, OnDestroy {
+
+constructor(private http: HttpClient) {}
 
     siteId?: string;
     siteInfo?: CoreSiteInfo;
@@ -203,18 +205,40 @@ export class CoreMainMenuUserMenuComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Contact site support.
+     *
+     * @param event Click event.
+     */
+    async whatsappSupport(event: Event): Promise<void> {
+        await this.close(event);
+        await CoreUserSupport.contact();
+    }
+
+    /**
      * Logout the user.
      *
      * @param event Click event
      */
-    async logout(event: Event): Promise<void> {
+    async logout(event: Event,siteinfo: any): Promise<void> {
         if (CoreNavigator.currentRouteCanBlockLeave()) {
             await CoreDomUtils.showAlert(undefined, Translate.instant('core.cannotlogoutpageblocks'));
 
             return;
         }
+        const currentSite = CoreSites.getCurrentSite();
+        if (!currentSite) {
+            return;
+        }
 
-        if (this.removeAccountOnLogout) {
+        const  wsToken = currentSite.getToken();
+
+          const logoutAPIURL = this.siteUrl+'/webservice/rest/server.php?wstoken='+wsToken+'&wsfunction=local_limitdevice_logout_user&moodlewsrestformat=json&userid='+siteinfo.userid;
+
+         this.http.get(logoutAPIURL).subscribe((response) => {
+            console.log(response);
+         });
+
+          if (this.removeAccountOnLogout) {
             // Ask confirm.
             const siteName = this.siteName ?
                 await CoreFilter.formatText(this.siteName, { clean: true, singleLine: true, filter: false }, [], this.siteId) :

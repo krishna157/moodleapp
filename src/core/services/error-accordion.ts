@@ -63,7 +63,7 @@ export class CoreErrorAccordionService {
         const showDetailsLabel = Translate.instant('core.errordetailsshow');
 
         return `
-            <div class="core-error-accordion">
+            <div class="core-error-accordion hide">
                 <h3 class="core-error-accordion--code">${errorCodeLabel}</h3>
                 <div id="${contentId}" class="core-error-accordion--details" role="region" aria-hidden="true">
                     <p>${errorDetails}</p>

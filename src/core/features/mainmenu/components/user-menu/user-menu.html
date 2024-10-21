@@ -117,7 +117,7 @@
         </ion-label>
     </ion-item>
     <div class="ion-padding">
-        <ion-button (click)="logout($event)" expand="block" color="danger" [ariaLabel]="'core.mainmenu.logout' | translate"
+        <ion-button (click)="logout($event, siteInfo)" expand="block" color="danger" [ariaLabel]="'core.mainmenu.logout' | translate"
             class="ion-text-wrap">
             <ng-container *ngIf="!removeAccountOnLogout">
                 <ion-icon name="fas-right-from-bracket" slot="start" aria-hidden="true" />
