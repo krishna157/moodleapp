@@ -3,15 +3,22 @@
 :host {
     .core-format-progress-list {
         width: 100%;
+
+        ion-avatar{
+            img{
+                border-radius: 0;
+            }
+        }
     }
 
     .core-course-thumb {
-        height: var(--core-courseimage-on-course-size);
-        min-height: var(--core-courseimage-on-course-size);
-        width: var(--core-courseimage-on-course-size);
-        min-width: var(--core-courseimage-on-course-size);
-        --border-radius: var(--core-courseimage-radius);
-        @include margin(8px, 16px, 8px, 0px);
+        margin-inline-start: 0px;
+        margin-inline-end: 16px;
+        width: 35%;
+        border-radius: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        height: 100%;
 
         @for $i from 0 to length($core-course-image-background) {
             &.course-color-#{$i} {

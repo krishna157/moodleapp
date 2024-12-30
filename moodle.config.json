@@ -1,8 +1,8 @@
 {
-    "app_id": "com.moodle.moodlemobile",
+    "app_id": "com.app.medtrain",
     "appname": "Medtrain",
-    "versioncode": 45000,
-    "versionname": "4.5.0",
+    "versioncode": 1,
+    "versionname": "1.0.0",
     "cache_update_frequency_usually": 420000,
     "cache_update_frequency_often": 1200000,
     "cache_update_frequency_sometimes": 3600000,
@@ -90,14 +90,14 @@
     "sites": [{
         "name": "short_name",
         "alias": "full_name",
-        "url": "http://13.210.176.131/moodle",
+        "url": "https://med-train.in",
         "staging": false
     }],
     "multisitesdisplay": "",
     "sitefindersettings": {},
     "onlyallowlistedsites": false,
     "forcedefaultlanguage": false,
-    "privacypolicy": "https://moodle.net/moodle-app-privacy/",
+    "privacypolicy": "https://med-train.in/moodle-app-privacy/",
     "notificoncolor": "#f98012",
     "enableanalytics": false,
     "enableonboarding": true,
@@ -105,7 +105,7 @@
     "forceLoginLogo": false,
     "ioswebviewscheme": "moodleappfs",
     "appstores": {
-        "android": "com.moodle.moodlemobile",
+        "android": "com.app.medtrain",
         "ios": "id633359593"
     },
     "wsrequestqueuelimit": 10,

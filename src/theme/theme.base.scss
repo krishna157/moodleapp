@@ -558,3 +558,20 @@ ion-thumbnail.customized-thumbnail {
 .core-error-accordion.hide{
 display: none;
 }
+
+
+ion-tab-bar.mainmenu-tabs {
+    /* Background */
+    --core-bottom-tabs-background: #ffffff;
+    --core-bottom-tabs-background-selected: transparent;
+
+    /* Tab icons */
+    --core-bottom-tabs-color: #0177c3;
+
+    /* Selected tab icon */
+    --core-bottom-tabs-color-selected: #e17024;
+
+    /* Badges */
+    --core-bottom-tabs-badge-text-color: white;
+    --core-bottom-tabs-badge-color: #e17024;
+}

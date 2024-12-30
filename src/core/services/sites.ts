@@ -521,7 +521,6 @@ export class CoreSitesProvider {
         };
         const loginUrl = `${siteUrl}/login/token.php?lang=${lang}`;
         let data: CoreSitesLoginTokenResponse;
-
         try {
             data = await firstValueFrom(Http.post(loginUrl, params).pipe(timeout(CoreWS.getRequestTimeout())));
         } catch (error) {
@@ -570,6 +569,9 @@ export class CoreSitesProvider {
                     },
                 });
             }
+        }
+        if ((data.error?.indexOf("already logged") ?? 0) > 0) {
+            throw new CoreError(data.error);
         }
 
         throw this.createCannotConnectLoginError(siteUrl, {
@@ -1345,7 +1347,7 @@ export class CoreSitesProvider {
 
         await Promise.all(sites.map(async (site) => {
             if (!ids || ids.indexOf(site.id) > -1) {
-                const siteInfo = site.info ? <CoreSiteInfo> CoreText.parseJSON(site.info) : undefined;
+                const siteInfo = site.info ? <CoreSiteInfo>CoreText.parseJSON(site.info) : undefined;
                 const siteInstance = CoreSitesFactory.makeSite(site.id, site.siteUrl, site.token, { info: siteInfo });
 
                 const siteName = await siteInstance.getSiteName();
@@ -1413,7 +1415,7 @@ export class CoreSitesProvider {
      * @returns Promise resolved when the sites IDs are retrieved.
      */
     async getLoggedInSitesIds(): Promise<string[]> {
-        const sites = await this.sitesTable.getMany({ loggedOut : 0 });
+        const sites = await this.sitesTable.getMany({ loggedOut: 0 });
 
         return sites.map((site) => site.id);
     }
@@ -1536,7 +1538,7 @@ export class CoreSitesProvider {
      * Handle auto logout by checking autologout type and time if its required.
      */
     async handleAutoLogout(): Promise<void> {
-        await CoreUtils.ignoreErrors(( async () => {
+        await CoreUtils.ignoreErrors((async () => {
             const siteId = await this.getStoredCurrentSiteId();
             const site = await this.getSite(siteId);
             const autoLogoutType = Number(site.getStoredConfig('tool_mobile_autologout'));
@@ -1823,7 +1825,7 @@ export class CoreSitesProvider {
 
         try {
             // Site has already been created, apply the schema directly.
-            const schemas: {[name: string]: CoreRegisteredSiteSchema} = {};
+            const schemas: { [name: string]: CoreRegisteredSiteSchema } = {};
             schemas[schema.name] = schema;
 
             // Apply it to the specified site only.
@@ -1872,11 +1874,11 @@ export class CoreSitesProvider {
      * @param schemas Schemas to migrate.
      * @returns Promise resolved when done.
      */
-    protected async applySiteSchemas(site: CoreSite, schemas: {[name: string]: CoreRegisteredSiteSchema}): Promise<void> {
+    protected async applySiteSchemas(site: CoreSite, schemas: { [name: string]: CoreRegisteredSiteSchema }): Promise<void> {
         // Fetch installed versions of the schema.
         const records = await this.getSiteSchemasTable(site).getMany();
 
-        const versions: {[name: string]: number} = {};
+        const versions: { [name: string]: number } = {};
         records.forEach((record) => {
             versions[record.name] = record.version;
         });
@@ -1935,11 +1937,11 @@ export class CoreSitesProvider {
      * @returns Promise resolved with site to use and the list of sites that have
      *         the URL. Site will be undefined if it isn't the root URL of any stored site.
      */
-    async isStoredRootURL(url: string, username?: string): Promise<{site?: CoreSite; siteIds: string[]}> {
+    async isStoredRootURL(url: string, username?: string): Promise<{ site?: CoreSite; siteIds: string[] }> {
         // Check if the site is stored.
         const siteIds = await this.getSiteIdsFromUrl(url, true, username);
 
-        const result: {site?: CoreSite; siteIds: string[]} = {
+        const result: { site?: CoreSite; siteIds: string[] } = {
             siteIds,
         };
 

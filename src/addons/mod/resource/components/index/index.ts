@@ -205,7 +205,7 @@ export class AddonModResourceIndexComponent extends CoreCourseModuleMainResource
     async open(iOSOpenFileAction?: OpenFileAction): Promise<void> {
         let downloadable = await CoreCourseModulePrefetchDelegate.isModuleDownloadable(this.module, this.courseId);
 
-        if (downloadable) {
+        if (downloadable && !this.module.contentsinfo?.mimetypes?.includes("application/pdf")) {
             // Check if the main file is downloadle.
             // This isn't done in "isDownloadable" to prevent extra WS calls in the course page.
             downloadable = await AddonModResourceHelper.isMainFileDownloadable(this.module);
@@ -224,9 +224,16 @@ export class AddonModResourceIndexComponent extends CoreCourseModuleMainResource
                 return AddonModResourceHelper.openModuleFile(this.module, this.courseId, { iOSOpenFileAction });
             }
         }
+        const contents = await CoreCourse.getModuleContents(this.module, undefined, undefined, false, false);
+        var url = contents[0].fileurl.replace("/webservice", "").replace("?forcedownload=1", "")
+      
+        const src = "https://docs.google.com/gview?embedded=true&url=" + url;
 
-        // The resource cannot be downloaded, open the activity in browser.
-        await CoreSites.getCurrentSite()?.openInBrowserWithAutoLogin(this.module.url || '');
+        await CoreSites.getCurrentSite()?.openWithAutoLogin(true, src || '', {
+            clearcache: "yes",
+            cleardata: "yes",
+            toolbar:'no'
+        });
     }
 
     /**

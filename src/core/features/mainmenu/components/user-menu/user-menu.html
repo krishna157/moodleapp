@@ -20,8 +20,9 @@
                 href="https://med-train.com/" core-link>
                 <ion-label>
                     <!-- Show site logo. -->
-                    <img class="core-usermenu-site-logo" *ngIf="siteLogo && siteLogoLoaded" [src]="siteLogo" role="presentation" alt=""
-                        core-external-content onError="this.class='image-not-found'">
+                    <img src="assets/img/top_logo.png" height="50" class="core-usermenu-site-logo" [alt]="siteName"  role="presentation">
+
+                  <!--   <img class="core-usermenu-site-logo" *ngIf="siteLogo && siteLogoLoaded" [src]="siteLogo" role="presentation" alt="" core-external-content onError="this.class='image-not-found'"> -->
                     <p class="core-usermenu-sitename">
                         <core-format-text [text]="siteName" contextLevel="system" [contextInstanceId]="0" [wsNotFiltered]="true" />
                     </p>
@@ -117,8 +118,8 @@
         </ion-label>
     </ion-item>
     <div class="ion-padding">
-        <ion-button (click)="logout($event, siteInfo)" expand="block" color="danger" [ariaLabel]="'core.mainmenu.logout' | translate"
-            class="ion-text-wrap">
+        <ion-button (click)="logout($event, siteInfo)" expand="block"  [ariaLabel]="'core.mainmenu.logout' | translate"
+            class="ion-text-wrap text-white">
             <ng-container *ngIf="!removeAccountOnLogout">
                 <ion-icon name="fas-right-from-bracket" slot="start" aria-hidden="true" />
                 {{ 'core.mainmenu.logout' | translate }}

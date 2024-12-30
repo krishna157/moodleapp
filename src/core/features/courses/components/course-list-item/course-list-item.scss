@@ -70,6 +70,7 @@ ion-card {
         width: var(--button-size);
         height: var(--button-size);
         margin: 0;
+
         &::part(native) {
             background: var(--background);
         }
@@ -80,7 +81,8 @@ ion-card {
     }
 }
 
-.core-course-enrol-icons, .core-icon-downloaded {
+.core-course-enrol-icons,
+.core-icon-downloaded {
     @include margin-horizontal(4px, 0px);
 }
 
@@ -105,10 +107,29 @@ ion-chip {
 // List layout.
 ion-card.core-course-list-item {
     max-width: var(--list-item-max-width);
+    border-bottom: var(--ion-card-border-width) solid;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-radius: 0;
+    --border-color: var(--ion-card-border-color);
+
+    ion-thumbnail {
+        padding-bottom: 0.3em;
+        margin-left: 0;
+        padding-right: 0.5rem;
+        margin-left: 0;
+        width: 45%;
+
+        img {
+            object-fit: fill;
+            border-radius: 0.6rem;
+        }
+    }
 
     /** Deprecated icon */
     ion-icon.course-icon {
-        padding: 12px;
+        // padding: 12px;
         font-size: calc(var(--avatar-size) - 24px);
         border-radius: var(--avatar-radius);
         color: var(--course-color-tint);
@@ -116,26 +137,28 @@ ion-card.core-course-list-item {
     }
 
     ion-avatar {
-       --border-radius: var(--avatar-radius);
+        --border-radius: var(--avatar-radius);
         width: var(--avatar-size);
         height: var(--avatar-size);
+
         img {
             background: transparent;
         }
     }
 
     ion-item::part(native) {
-        --padding-start: var(--avatar-margin);
+        padding: 0
     }
 
     .core-course-thumb {
-        @include margin(var(--avatar-margin), var(--avatar-margin), var(--avatar-margin), null);
+        @include margin(var(--avatar-margin),
+            var(--avatar-margin), var(--avatar-margin), null);
     }
 
-    .core-course-maininfo {
+   /*  .core-course-maininfo {
         @include margin-horizontal(null, 32px);
     }
-
+ */
     @if ($core-course-hide-progress-on-list-items) {
         .core-course-progress {
             display: none;
@@ -157,7 +180,7 @@ ion-card.core-course-list-card {
         height: 100%;
     }
 
-    height: calc(100% - var(--card-vertical-margin) - var(--card-vertical-margin));
+    height: 20rem;
     margin-top: var(--card-vertical-margin);
     margin-bottom: var(--card-vertical-margin);
 
@@ -188,6 +211,7 @@ ion-card.core-course-list-card {
 
         &.core-course-color-img {
             background: var(--ion-item-background);
+            height: 12rem;
         }
 
         img {
@@ -197,6 +221,8 @@ ion-card.core-course-list-card {
             right: 0;
             left: 0;
             margin: auto;
+            height: 100%;
+            width: 100%;
         }
     }
 
@@ -214,7 +240,7 @@ ion-card.core-course-list-card {
             align-items: self-start;
         }
 
-        > ion-label{
+        >ion-label {
             margin: 16px 0;
 
             display: flex;
@@ -277,7 +303,7 @@ ion-card.core-course-list-card {
             --padding-start: 8px;
             --inner-padding-end: 8px;
 
-            > ion-label {
+            >ion-label {
                 margin: 8px 0;
 
                 .item-heading {

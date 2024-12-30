@@ -1,5 +1,5 @@
 ion-item.item {
-    --detail-icon-color: var(--ion-item-detail-icon-color);
+    --detail-icon-color: var(--primary);
     --detail-icon-font-size: var(--ion-item-detail-icon-font-size);
     --detail-icon-opacity: var(--ion-item-detail-icon-opacity);
 
@@ -9,7 +9,7 @@ ion-item.item {
     }
 
     > ion-icon[slot] {
-        color: var(--ion-item-icon-color);
+        color: var(--primary);
     }
 
     &.item-lines-default,

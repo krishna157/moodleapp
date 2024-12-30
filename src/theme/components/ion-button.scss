@@ -47,7 +47,7 @@ ion-button {
 
     &.button-outline {
         --border-width: var(--core-input-border-width);
-        --border-color: var(--core-input-stroke);
+        --border-color: var(--primary);
         --background: var(--core-input-background);
         --color: var(--core-input-text);
         --ion-color-primary: var(--core-input-text);

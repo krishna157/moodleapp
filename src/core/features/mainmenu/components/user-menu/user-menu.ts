@@ -50,7 +50,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CoreMainMenuUserMenuComponent implements OnInit, OnDestroy {
 
-constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient) { }
 
     siteId?: string;
     siteInfo?: CoreSiteInfo;
@@ -111,7 +111,7 @@ constructor(private http: HttpClient) {}
 
                 // Only update handlers if they have changed, to prevent a blink effect.
                 if (newHandlers.length !== this.handlers.length ||
-                        JSON.stringify(newHandlers) !== JSON.stringify(this.handlers)) {
+                    JSON.stringify(newHandlers) !== JSON.stringify(this.handlers)) {
                     this.handlers = newHandlers;
                 }
 
@@ -121,7 +121,7 @@ constructor(private http: HttpClient) {}
 
                 // Only update handlers if they have changed, to prevent a blink effect.
                 if (newHandlers.length !== this.handlers.length ||
-                        JSON.stringify(newHandlers) !== JSON.stringify(this.handlers)) {
+                    JSON.stringify(newHandlers) !== JSON.stringify(this.handlers)) {
                     this.accountHandlers = newHandlers;
                 }
 
@@ -219,7 +219,7 @@ constructor(private http: HttpClient) {}
      *
      * @param event Click event
      */
-    async logout(event: Event,siteinfo: any): Promise<void> {
+    async logout(event: Event, siteinfo: any): Promise<void> {
         if (CoreNavigator.currentRouteCanBlockLeave()) {
             await CoreDomUtils.showAlert(undefined, Translate.instant('core.cannotlogoutpageblocks'));
 
@@ -230,34 +230,34 @@ constructor(private http: HttpClient) {}
             return;
         }
 
-        const  wsToken = currentSite.getToken();
+        const wsToken = currentSite.getToken();
 
-          const logoutAPIURL = this.siteUrl+'/webservice/rest/server.php?wstoken='+wsToken+'&wsfunction=local_limitdevice_logout_user&moodlewsrestformat=json&userid='+siteinfo.userid;
+        const logoutAPIURL = this.siteUrl + '/webservice/rest/server.php?wstoken=' + wsToken + '&wsfunction=local_limitdevice_logout_user&moodlewsrestformat=json&userid=' + siteinfo.userid;
 
-         this.http.get(logoutAPIURL).subscribe((response) => {
-            console.log(response);
-         });
+        this.http.get(logoutAPIURL).subscribe(async (response) => {
+            if (this.removeAccountOnLogout) {
+                // Ask confirm.
+                const siteName = this.siteName ?
+                    await CoreFilter.formatText(this.siteName, { clean: true, singleLine: true, filter: false }, [], this.siteId) :
+                    '';
 
-          if (this.removeAccountOnLogout) {
-            // Ask confirm.
-            const siteName = this.siteName ?
-                await CoreFilter.formatText(this.siteName, { clean: true, singleLine: true, filter: false }, [], this.siteId) :
-                '';
-
-            try {
-                await CoreDomUtils.showDeleteConfirm('core.login.confirmdeletesite', { sitename: siteName });
-            } catch (error) {
-                // User cancelled, stop.
-                return;
+                try {
+                    await CoreDomUtils.showDeleteConfirm('core.login.confirmdeletesite', { sitename: siteName });
+                } catch (error) {
+                    // User cancelled, stop.
+                    return;
+                }
             }
-        }
 
-        await this.close(event);
+            await this.close(event);
 
-        await CoreSites.logout({
-            forceLogout: true,
-            removeAccount: this.removeAccountOnLogout,
+            await CoreSites.logout({
+                forceLogout: true,
+                removeAccount: this.removeAccountOnLogout,
+            });
         });
+
+
     }
 
     /**
